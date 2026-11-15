@@ -7,6 +7,11 @@ const routes = [
     component: ContactBook,
   },
   {
+    path: "/favorites",
+    name: "contact.favorites",
+    component: () => import("@/views/ContactFavorites.vue"),
+  },
+  {
     path: "/contacts/add",
     name: "contact.add",
     component: () => import("@/views/ContactAdd.vue"),

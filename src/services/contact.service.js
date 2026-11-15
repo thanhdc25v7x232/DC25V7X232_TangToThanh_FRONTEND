@@ -6,6 +6,9 @@ class ContactService {
   async getAll() {
     return (await this.api.get("/")).data;
   }
+  async getFavorite() {
+    return (await this.api.get("/favorite")).data;
+  }
   async create(data) {
     return (await this.api.post("/", data)).data;
   }

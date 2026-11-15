@@ -8,6 +8,12 @@
                     <i class="fas fa-address-book"></i>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link :to="{ name: 'contact.favorites' }" class="nav-link">
+                    Yêu thích
+                    <i class="fas fa-heart"></i>
+                </router-link>
+            </li>
         </div>
     </nav>
 </template>
