@@ -6,8 +6,17 @@ const commonConfig = {
   },
 };
 export default (baseURL) => {
-  return axios.create({
+  const api = axios.create({
     baseURL,
     ...commonConfig,
   });
+  // Gắn token (nếu có) vào header Authorization của mọi request
+  api.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
+  return api;
 };
