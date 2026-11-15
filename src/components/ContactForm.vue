@@ -20,6 +20,27 @@
             <Field name="phone" type="tel" class="form-control" v-model="contactLocal.phone" />
             <ErrorMessage name="phone" class="error-feedback" />
         </div>
+                <div class="form-group">
+            <label>Sở thích</label>
+            <div>
+                <div
+                    v-for="item in interestOptions"
+                    :key="item"
+                    class="form-check form-check-inline"
+                >
+                    <input
+                        :id="'interest-' + item"
+                        type="checkbox"
+                        class="form-check-input"
+                        :value="item"
+                        v-model="contactLocal.interests"
+                    />
+                    <label :for="'interest-' + item" class="form-check-label">
+                        {{ item }}
+                    </label>
+                </div>
+            </div>
+        </div>
         <div class="form-group form-check">
             <input name="favorite" type="checkbox" class="form-check-input" v-model="contactLocal.favorite" />
             <label for="favorite" class="form-check-label">
@@ -70,11 +91,16 @@ export default {
                     "Số điện thoại không hợp lệ."
                 ),
         });
+        // Liên hệ cũ chưa có trường interests: khởi tạo mảng rỗng
+        if (!Array.isArray(this.contact.interests)) {
+            this.contact.interests = [];
+        }
         return {
             // Chúng ta sẽ không muốn hiệu chỉnh props, nên tạo biến cục bộ
             // contactLocal để liên kết với các input trên form
             contactLocal: this.contact,
             contactFormSchema,
+            interestOptions: ["Đọc sách", "Du lịch", "Thể thao", "Âm nhạc", "Nấu ăn"],
         };
     },
     methods: {
